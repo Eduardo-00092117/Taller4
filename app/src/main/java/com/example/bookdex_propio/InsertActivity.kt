@@ -46,7 +46,10 @@ class InsertActivity : AppCompatActivity() {
             autor?.let { autorAdapter.setAutor(it) }
         })
 
+        cambiarColor(R.color.colorred, R.color.colorredlight, R.color.colorredlight)
+
         btn_autor.setOnClickListener {
+            cambiarColor(R.color.colorred, R.color.colorredlight, R.color.colorredlight)
             pestaña = 0
             libroViewModel.allAutor.observe(this, Observer {autor ->
                 rv_catalogo.adapter = autorAdapter
@@ -55,6 +58,7 @@ class InsertActivity : AppCompatActivity() {
         }
 
         btn_editorial.setOnClickListener {
+            cambiarColor(R.color.colorredlight, R.color.colorredlight, R.color.colorred)
             pestaña = 1
             libroViewModel.allEditorial.observe(this, Observer {autor ->
                 rv_catalogo.adapter = editorialAdapter
@@ -63,6 +67,7 @@ class InsertActivity : AppCompatActivity() {
         }
 
         btn_tag.setOnClickListener {
+            cambiarColor(R.color.colorredlight, R.color.colorred, R.color.colorredlight)
             pestaña = 2
             libroViewModel.allTag.observe(this, Observer {tag ->
                 rv_catalogo.adapter = tagAdapter
@@ -105,6 +110,12 @@ class InsertActivity : AppCompatActivity() {
         btn_cancelar.setOnClickListener {
             onBackPressed()
         }
+    }
+
+    fun cambiarColor(color1 : Int, color2 : Int, color3 : Int){
+        btn_autor.setBackgroundResource(color1)
+        btn_tag.setBackgroundResource(color2)
+        btn_editorial.setBackgroundResource(color3)
     }
 
     fun agregarTag(tag : Tag){
